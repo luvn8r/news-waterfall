@@ -1,0 +1,120 @@
+@font-face {
+  font-family: 'InterVariable';
+  src: url('fonts/inter-latin-wght-normal.woff2') format('woff2-variations'), url('fonts/inter-latin-wght-normal.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'InterVariable';
+  src: url('fonts/inter-latin-ext-wght-normal.woff2') format('woff2-variations'), url('fonts/inter-latin-ext-wght-normal.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  --bg: #0a0a0b;
+  --ink: #f4f4f2;
+  --muted: rgba(244, 244, 242, 0.42);
+  --rule: rgba(244, 244, 242, 0.07);
+  --fs: 17px;        /* set from widget size by app.js */
+  --pad: 18px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;                 /* no manual scrolling, no pinch-zoom */
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: default;
+  -webkit-app-region: drag;           /* desktop widget: drag anywhere to move it */
+}
+
+body {
+  font-family: 'InterVariable', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+#stage {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  padding-top: env(safe-area-inset-top);
+  /* soft fade where headlines enter and leave */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 9%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 9%, #000 88%, transparent 100%);
+}
+
+.headline {
+  position: absolute;
+  top: 0;
+  left: var(--pad);
+  right: var(--pad);
+  will-change: transform;
+  pointer-events: none;
+  contain: layout paint;
+}
+
+.headline h2 {
+  font-size: var(--fs);
+  line-height: 1.32;
+  font-weight: 560;
+  letter-spacing: -0.012em;
+  overflow-wrap: anywhere;            /* very long words wrap instead of clipping */
+  hyphens: auto;
+  text-wrap: pretty;
+}
+
+.headline p {
+  margin-top: calc(var(--fs) * 0.42);
+  font-size: calc(var(--fs) * 0.64);
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.headline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 28px;
+  bottom: calc(var(--fs) * -0.65);
+  height: 1px;
+  background: var(--rule);
+}
+
+#status {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--pad);
+  text-align: center;
+  font-size: calc(var(--fs) * 0.72);
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  pointer-events: none;
+  transition: opacity 1.2s ease;
+}
+#status.hidden { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  /* Motion is the product, so it stays — but slower (handled in app.js). */
+}

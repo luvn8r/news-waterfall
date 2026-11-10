@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TEST FIXTURE: invented placeholder items, not real news -->
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Fixture Feed</title>
+    <item>
+      <title><![CDATA[Fixture: City council approves &#8216;green&#8217; transport plan]]></title>
+      <link>https://www.example.com/story/1?utm_source=rss&amp;utm_medium=feed</link>
+      <guid isPermaLink="false">fixture-1</guid>
+      <pubDate>Tue, 10 Nov 2026 08:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Fixture: Researchers map deep ocean currents with new sensors &amp;amp; drones - Fixture News</title>
+      <link>https://example.com/story/2#comments</link>
+      <guid>https://example.com/story/2</guid>
+      <pubDate>Tue, 10 Nov 2026 07:30:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Sport</title>
+      <link>https://example.com/sport</link>
+    </item>
+    <item>
+      <title>Fixture: Item with a timestamp far in the future is clamped</title>
+      <link>https://example.com/story/3</link>
+      <pubDate>Fri, 01 Jan 2100 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

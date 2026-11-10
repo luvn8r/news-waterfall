@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Headlines</string>
+    <string name="title_activity_main">Headlines</string>
+    <string name="package_name">app.newswaterfall.headlines</string>
+    <string name="custom_url_scheme">app.newswaterfall.headlines</string>
+</resources>

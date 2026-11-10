@@ -1,0 +1,82 @@
+{
+  "name": "news-waterfall",
+  "productName": "Headlines",
+  "version": "1.0.0",
+  "description": "A never-ending, hands-free waterfall of world news headlines.",
+  "main": "desktop/main.js",
+  "license": "MIT",
+  "author": "You",
+  "scripts": {
+    "start": "electron .",
+    "server": "node server/server.js",
+    "build:web": "node scripts/build-web.js",
+    "android": "npm run build:web && npx cap sync android && npx cap open android",
+    "android:apk": "npm run build:web && npx cap sync android && cd android && ./gradlew assembleDebug",
+    "ios": "npm run build:web && npx cap sync ios && npx cap open ios",
+    "test": "node --test \"test/*.test.js\"",
+    "test:browser": "node test/browser/run.js",
+    "test:app": "npm run build:web && node test/browser/app.js",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac",
+    "dist:linux": "electron-builder --linux"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.6.0",
+    "@capacitor/core": "^8.6.0",
+    "@capacitor/ios": "^8.6.0",
+    "fast-xml-parser": "^5.2.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^4.0.0",
+    "@capacitor/cli": "^8.6.0",
+    "electron": "^45.2.3",
+    "electron-builder": "^26.18.0",
+    "esbuild": "^0.28.2",
+    "playwright-core": "^1.65.0"
+  },
+  "build": {
+    "appId": "app.newswaterfall.headlines",
+    "productName": "Headlines",
+    "files": [
+      "desktop/**",
+      "display/**",
+      "shared/**",
+      "core/**",
+      "config.json",
+      "package.json"
+    ],
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "category": "public.app-category.news",
+      "icon": "build/icon.png"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "News",
+      "icon": "build/icon.png"
+    }
+  }
+}
